@@ -68,3 +68,5 @@ function numberOfOccurrencesInText(word, text) {
   });
   return wordCount;
 }
+
+function removeOffensiveText(text) {}
