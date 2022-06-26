@@ -37,6 +37,13 @@ function handleFormSubmission() {
   const occurrencesOfWord = numberOfOccurrencesInText(word, passage);
   document.getElementById('total-count').innerText = wordCount;
   document.getElementById('selected-count').innerText = occurrencesOfWord;
+  // new lines here!
+  let boldedPassage = boldPassage(word, passage);
+  if (boldedPassage) {
+    document.querySelector('div#bolded-passage').append(boldedPassage);
+  } else {
+    document.querySelector('div#bolded-passage').innerText = null;
+  }
 }
 
 window.addEventListener('load', function () {
@@ -44,24 +51,3 @@ window.addEventListener('load', function () {
     .querySelector('form#word-counter')
     .addEventListener('submit', handleFormSubmission);
 });
-
-function boldPassage(word, text) {
-  if (text.trim().length === 0 || word.trim().length === 0) {
-    return null;
-  }
-  const p = document.createElement('p');
-  let textArray = text.split(' ');
-  textArray.forEach(function (element) {
-    if (word === element) {
-      const bold = document.createElement('strong');
-      bold.append(element);
-      p.append(bold);
-    } else {
-      p.append(element);
-    }
-    if (index !== textArray.length - 1) {
-      p.append(' ');
-    }
-  });
-  return p;
-}
